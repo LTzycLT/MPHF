@@ -10,8 +10,7 @@ const int N = 120000, M = 200000;
 int h[N][3];
 char key[N][30];
 
-int n, m, node_degree[N];
-vector<int> a[M];
+int n, m, node_degree[M];
 map<int, int> mp;
 set<int> edge[M], degree[N + 1];
 vector<int> delete_order;
@@ -116,18 +115,13 @@ bool hypergraph_generate()
         g[h[u][choice]] = ((choice - hash_sum) % 3 + 3) % 3; 
         visited[h[u][choice]] = true;
     }
-    for(int i = 0; i < n; i++)
-    {
-        printf("%d %s\n", h[i][(g[h[i][0]] + g[h[i][1]] + g[h[i][2]]) % 3], key[i]);
-    }
-
     return 1;
 }
 int input()
 {
     n = 0;
     while(scanf("%s", key[n++]) != EOF);
-    m = 1.23 * n;
+    m = 1.3 * n;
     set<int> st;
     set<pair<int, pair<int, int> > > hole; 
     for(int i = 0; i < n; i++)
@@ -149,7 +143,11 @@ int input()
     return -1;
 }
 int validate()
-{   
+{
+    for(int i = 0; i < n; i++)
+    {
+        printf("%d %s\n", h[i][(g[h[i][0]] + g[h[i][1]] + g[h[i][2]]) % 3], key[i]);
+    }
     return 1;
 }
 int main()
